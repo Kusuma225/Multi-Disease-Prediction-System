@@ -1,0 +1,253 @@
+# Configuration file for Multi-Disease Prediction System
+
+# Project Information
+project:
+  name: "Explainable AI for Multi-Disease Prediction"
+  version: "1.0.0"
+  author: "B.Tech Final Year Project"
+  date: "January 2026"
+
+# Directories
+directories:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  models: "models"
+  results: "results"
+  logs: "logs"
+  reports: "documentation/reports"
+
+# Diseases Configuration
+diseases:
+  - name: "diabetes"
+    display_name: "Diabetes"
+    dataset_url: "https://www.kaggle.com/datasets/mathchi/diabetes-data-set"
+    target_column: "outcome"
+    
+  - name: "heart_disease"
+    display_name: "Heart Disease"
+    dataset_url: "https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset"
+    target_column: "Outcome"
+    
+  - name: "liver_disease"
+    display_name: "Liver Disease"
+    dataset_url: "https://www.kaggle.com/datasets/uciml/indian-liver-patient-records"
+    target_column: "outcome"
+    
+  - name: "kidney_disease"
+    display_name: "Kidney Disease"
+    dataset_url: "https://www.kaggle.com/datasets/mansoordaku/ckdisease"
+    target_column: "classification"
+    
+  - name: "breast_cancer"
+    display_name: "Breast Cancer"
+    dataset_url: "https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data"
+    target_column: "Outcome"
+    
+  - name: "parkinsons"
+    display_name: "Parkinson's Disease"
+    dataset_url: "https://www.kaggle.com/datasets/vikasukani/parkinsons-disease-data-set"
+    target_column: "status"
+    
+  - name: "stroke"
+    display_name: "Stroke"
+    dataset_url: "https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset"
+    target_column: "outcome"
+    
+  - name: "hypertension"
+    display_name: "Hypertension"
+    dataset_url: "synthetic"  # Will be created from heart disease/stroke data
+    target_column: "outcome"
+    
+  - name: "anemia"
+    display_name: "Anemia"
+    dataset_url: "https://www.kaggle.com/datasets/ehababoelnaga/anemia-types-classification"
+    target_column: "Outcome"
+    
+  - name: "thyroid"
+    display_name: "Thyroid Disorder"
+    dataset_url: "https://www.kaggle.com/datasets/emmanuelfwerr/thyroid-disease-data"
+    target_column: "Outcome"
+    
+  - name: "copd"
+    display_name: "COPD (Chronic Obstructive Pulmonary Disease)"
+    dataset_url: "https://www.kaggle.com/datasets/prakharrathi25/chronic-obstructive-pulmonary-disease"
+    target_column: "Outcome"
+    
+  - name: "pneumonia"
+    display_name: "Pneumonia"
+    dataset_url: "https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia"
+    target_column: "target"
+    
+  - name: "alzheimers"
+    display_name: "Alzheimer's Disease"
+    dataset_url: "https://www.kaggle.com/datasets/tourist55/alzheimers-dataset-4-class-of-images"
+    target_column: "target"
+    
+  - name: "asthma"
+    display_name: "Asthma"
+    dataset_url: "https://www.kaggle.com/datasets/rabieelkharoua/asthma-disease-dataset"
+    target_column: "target"
+    
+  - name: "tuberculosis"
+    display_name: "Tuberculosis"
+    dataset_url: "https://www.kaggle.com/datasets/kmader/pulmonary-chest-xray-abnormalities"
+    target_column: "target"
+    
+  - name: "malaria"
+    display_name: "Malaria"
+    dataset_url: "https://www.kaggle.com/datasets/iarunava/cell-images-for-detecting-malaria"
+    target_column: "target"
+    
+  - name: "covid19"
+    display_name: "COVID-19"
+    dataset_url: "https://www.kaggle.com/datasets/meirnizri/covid19-dataset"
+    target_column: "covid_positive"
+    
+  - name: "hepatitis"
+    display_name: "Hepatitis"
+    dataset_url: "https://www.kaggle.com/datasets/fedesoriano/hepatitis-c-dataset"
+    target_column: "target"
+    
+  - name: "osteoporosis"
+    display_name: "Osteoporosis"
+    dataset_url: "https://www.kaggle.com/datasets/steveomondi/osteoporosis-prediction-dataset"
+    target_column: "target"
+    
+  - name: "arthritis"
+    display_name: "Arthritis"
+    dataset_url: "https://www.kaggle.com/datasets/nancyalaswad90/osteoarthritis-knee-xray-dataset"
+    target_column: "target"
+
+# Model Configuration
+models:
+  algorithms:
+    - logistic_regression
+    - random_forest
+    - xgboost
+    - svm
+    - neural_network
+    - lightgbm
+  
+  hyperparameters:
+    logistic_regression:
+      C: [0.001, 0.01, 0.1, 1, 10, 100, 1000]  # MAX: Extended range
+      penalty: ['l2']
+      solver: ['lbfgs']
+      max_iter: 5000
+      random_state: 42
+    
+    random_forest:
+      n_estimators: [100, 200, 300]  # MAX: Larger ensembles
+      max_depth: [10, 20, 30, 50]
+      min_samples_split: [2, 5]
+      min_samples_leaf: [1, 2]
+      max_features: ['sqrt', 'log2']
+      random_state: 42
+    
+    xgboost:
+      n_estimators: [100, 200, 300]  # MAX
+      max_depth: [3, 5, 7, 9]
+      learning_rate: [0.005, 0.01, 0.05, 0.1]
+      subsample: [0.7, 0.8, 1.0]
+      colsample_bytree: [0.7, 0.8, 1.0]
+      min_child_weight: [1, 3]
+      random_state: 42
+    
+    svm:
+      C: [0.1, 1, 10, 100]  # MAX: balanced range
+      kernel: ['rbf', 'linear']
+      gamma: ['scale', 'auto']
+      random_state: 42
+    
+    neural_network:
+      hidden_layers: [[128, 64], [256, 128, 64], [128, 64, 32]]  # MAX: deeper nets
+      activation: ['relu', 'tanh']
+      learning_rate: [0.0001, 0.001, 0.01]
+      optimizer: ['adam']
+      epochs: 200
+      batch_size: 32
+      random_state: 42
+      n_jobs: 1
+    
+    # LightGBM - MAX PERFORMANCE
+    lightgbm:
+      n_estimators: [100, 200, 300]
+      max_depth: [5, 7, 10, -1]
+      learning_rate: [0.01, 0.05, 0.1]
+      num_leaves: [31, 63, 127]
+      min_child_samples: [10, 20, 30]
+      subsample: [0.8, 1.0]
+      colsample_bytree: [0.8, 1.0]
+      random_state: 42
+
+# Preprocessing Configuration
+preprocessing:
+  test_size: 0.2
+  validation_size: 0.1
+  cv_folds: 5   # 5-fold CV (RandomizedSearchCV n_iter=40 → 200 fits per model, research-quality)
+  random_state: 42
+  
+  missing_value_strategy:
+    numeric: "median"
+    categorical: "mode"
+  
+  scaling_method: "standard"  # standard, minmax, robust
+  
+  feature_selection:
+    method: "all"  # all, correlation, importance, recursive
+    correlation_threshold: 0.95
+    importance_threshold: 0.01
+  
+  imbalance_handling:
+    method: "smote"  # smote, random_oversample, random_undersample, none
+    sampling_strategy: "auto"
+
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - roc_auc
+  
+  primary_metric: "roc_auc"
+
+# Explainability Configuration
+explainability:
+  shap:
+    enabled: true
+    plot_types:
+      - summary
+      - waterfall
+      - force
+      - dependence
+  
+  lime:
+    enabled: true
+    num_features: 10
+    num_samples: 5000
+
+# Risk Classification Thresholds
+risk_thresholds:
+  low: [0.0, 0.3]
+  medium: [0.3, 0.7]
+  high: [0.7, 1.0]
+
+# UI Configuration
+ui:
+  theme: "light"
+  title: "Multi-Disease Prediction System"
+  sidebar_state: "expanded"
+  
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/system.log"
+
+# Random Seeds (for reproducibility)
+random_seeds:
+  global: 42
+  numpy: 42
+  tensorflow: 42
