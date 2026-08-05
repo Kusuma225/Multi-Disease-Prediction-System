@@ -458,9 +458,9 @@ Academic Year: 2025-2026
 
 For queries, suggestions, or collaboration opportunities:
 
-- **Project Repository**: [Your GitHub/GitLab URL]
-- **Email**: [Your Email Address]
-- **Institution**: [Your Institution Name]
+- **Project Repository**: https://github.com/Kusuma225/Multi-Disease-Prediction-System
+- **Email**: mannavaramkusumpriya@gmail.com
+- **Institution**: JNTUACEP
 
 ---
 
